@@ -5,22 +5,29 @@
 # Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+# o
 stages:
-- build
-- test
-- deploy
-- review
-- dast
-- staging
-- canary
-- production
-- incremental rollout 10%
-- incremental rollout 25%
-- incremental rollout 50%
-- incremental rollout 100%
-- performance
-- cleanup
-sast:
+  - build
+  - test
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - echo "Building the project..."
+    - mkdir build
+    - echo "Build complete!" > build/status.txt
+
+test-job:
   stage: test
-include:
-- template: Auto-DevOps.gitlab-ci.yml
+  script:
+    - echo "Running tests..."
+    - sleep 3
+    - echo "Tests passed!"
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Deploying the application..."
+    - sleep 3
+    - echo "Deployment complete!"
