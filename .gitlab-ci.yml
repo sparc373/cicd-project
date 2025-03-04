@@ -22,4 +22,4 @@ deploy-job:
   script:
     - echo "Deploying the application..."
     - sleep 3
-    - echo "Deployment complete!"
+    - echo "Deployment complete!!!"
